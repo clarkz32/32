@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Native Pace Coach</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <aside class="rail" aria-label="训练导航">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">NP</span>
+          <div>
+            <h1>Native Pace Coach</h1>
+            <p>高阶英语口语提速训练</p>
+          </div>
+        </div>
+
+        <nav class="mode-list" aria-label="训练模式">
+          <button class="mode active" data-mode="shadow">
+            <span>影子跟读</span>
+            <small>节奏、连读、语调</small>
+          </button>
+          <button class="mode" data-mode="speed">
+            <span>语速阶梯</span>
+            <small>从清晰到自然快</small>
+          </button>
+          <button class="mode" data-mode="reaction">
+            <span>即兴反应</span>
+            <small>减少翻译延迟</small>
+          </button>
+          <button class="mode" data-mode="linking">
+            <span>连读弱读</span>
+            <small>听起来更自然</small>
+          </button>
+        </nav>
+
+        <section class="daily">
+          <div>
+            <span class="daily-label">今日目标</span>
+            <strong><span id="goalDone">0</span>/5</strong>
+          </div>
+          <div class="progress" aria-hidden="true"><span id="goalBar"></span></div>
+        </section>
+      </aside>
+
+      <section class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Drill Session</p>
+            <h2 id="modeTitle">影子跟读</h2>
+          </div>
+          <div class="stats">
+            <div>
+              <span>目标语速</span>
+              <strong id="targetWpm">155 WPM</strong>
+            </div>
+            <div>
+              <span>训练时长</span>
+              <strong id="sessionTime">00:00</strong>
+            </div>
+          </div>
+        </header>
+
+        <section class="focus-panel">
+          <div class="prompt-head">
+            <div>
+              <p id="drillType">Shadow this aloud</p>
+              <h3 id="promptTitle">Stop sounding careful. Start sounding present.</h3>
+            </div>
+            <button id="newPromptBtn" class="icon-button" type="button" title="换一句">
+              <span aria-hidden="true">↻</span>
+            </button>
+          </div>
+
+          <p id="promptText" class="prompt-text">
+            I get what you mean, but I would frame it slightly differently: the real issue is not speed itself, it is whether your rhythm lets people follow you without effort.
+          </p>
+
+          <div class="chips" id="focusChips" aria-label="训练重点"></div>
+
+          <canvas id="paceCanvas" width="900" height="180" aria-label="语速节奏可视化"></canvas>
+
+          <div class="controls">
+            <button id="listenBtn" class="primary" type="button">听原句</button>
+            <button id="recordBtn" type="button">开始录音</button>
+            <button id="nextStepBtn" type="button">完成一轮</button>
+          </div>
+        </section>
+
+        <section class="practice-grid">
+          <article class="tool-panel">
+            <div class="panel-title">
+              <h3>语速控制</h3>
+              <span id="rateLabel">1.00x</span>
+            </div>
+            <input id="rateSlider" type="range" min="0.75" max="1.35" step="0.05" value="1" />
+            <div class="scale">
+              <span>清晰</span>
+              <span>自然</span>
+              <span>快速</span>
+            </div>
+          </article>
+
+          <article class="tool-panel transcript">
+            <div class="panel-title">
+              <h3>你的输出</h3>
+              <span id="recordStatus">未录音</span>
+            </div>
+            <p id="transcriptText">点击“开始录音”，浏览器支持时会显示你的英文转写。</p>
+          </article>
+
+          <article class="tool-panel">
+            <div class="panel-title">
+              <h3>刻意训练点</h3>
+              <span id="cueCount">3 cues</span>
+            </div>
+            <ul id="cueList" class="cue-list"></ul>
+          </article>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
